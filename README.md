@@ -9,7 +9,7 @@ with 27,998 rows (genes) and 10,563 columns (cells)
 and can be downloaded from the ArrayExpress link above 
 (file named `E-MTAB-6173.processed.1.zip`).
 
-To read the full count matrix (after unzipping the file above):
+To read the full count matrix in `R` (after unzipping the file above):
 ```r
 library(data.table)
 x <- fread("full_count_matrix.txt")
