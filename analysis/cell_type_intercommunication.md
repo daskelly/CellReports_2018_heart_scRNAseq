@@ -26,18 +26,23 @@ including:
 
 ### Overview of basic analysis steps in `R`
 
-First, compile a list of receptor-ligand pairs. From this,
-`receptor_genes` and `ligand_genes` which are vectors of
-genes. Note that many receptors and ligands will be duplicated
-in these gene lists but receptor-ligand pair *i* should be unique.
+First, compile a list of receptor-ligand pairs. For example, you may want to make a 
+`data.frame` with columns `receptor` and `ligand`, where each row is a receptor-ligand 
+pair. If you have *N* receptor-ligand pairs, this `data.frame` will have *N* rows.
+Let's call this `data.frame` of receptor-ligand pairs `pairs`.
+We are going to work with the columns `pairs$receptor` and `pairs$ligand`
+below. Note that many receptors and ligands are likely to be duplicated
+in `pairs$receptor` and in `pairs$ligand`. 
+However, the receptor-ligand pair `pairs$receptor[i]`--`pairs$ligand[i]`
+should be unique.
 If we have a matrix of raw UMI counts with genes in rows and
 cells in columns `raw_counts`:
 
 ```r
 library(tidyverse)
 library(assertthat)
-raw_ligand <- raw_counts[ligand_genes, ]
-raw_receptor <- raw_counts[receptor_genes, ]
+raw_ligand <- raw_counts[pairs$ligand, ]
+raw_receptor <- raw_counts[pairs$receptor, ]
 ```
 
 Obtain boolean matrices indicating expression of each receptor/ligand
