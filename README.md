@@ -24,3 +24,16 @@ of these QC-passing cells was assigned.
 labs <- fread("cluster_labels.tsv")
 ```
 
+To read this into `R` as a `Seurat` object, do something like this:
+
+```r
+library(Seurat)
+library(tidyverse)
+mat <- as.data.frame(x) %>% column_to_rownames("V1")
+lab_df <- as.data.frame(labs) %>% column_to_rownames('cell')
+obj <- CreateSeuratObject(mat)
+# Keep only those cells with cluster IDs
+keep <- rownames(lab_df)
+obj <- obj[, keep]
+obj <- AddMetaData(obj, lab_df)
+```
