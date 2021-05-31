@@ -37,3 +37,6 @@ keep <- rownames(lab_df)
 obj <- obj[, keep]
 obj <- AddMetaData(obj, lab_df)
 ```
+
+This should give you an object of 27,998 gene expression levels measured
+in 10,519 cells.
